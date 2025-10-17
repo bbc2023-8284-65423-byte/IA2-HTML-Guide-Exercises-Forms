@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Animal Crossing Resident Application</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            body {
+                background-color: #FAF8F0; /* Sandy Off-white */
+                color: #5C4033; /* Earthy Brown */
+                font-family: 'Arial', sans-serif;
+                padding: 10px;
+            }
+            h2 {
+                color: #76B852; /* Animal Crossing Leaf Green */
+                text-align: center;
+            }
+            form {
+                max-width: 600px;
+                margin: auto;
+                background-color: #FFFFFF;
+                padding: 25px;
+                border-radius: 15px;
+                border: 2px solid #A5D6A7; /* Soft Green Border */
+                box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            }
+            label, p {
+                display: block;
+                padding: 5px 0;
+                font-weight: bold;
+            }
+            input[type="text"], input[type="password"], input[type="email"], select, textarea {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                background-color: #FFFBEF; /* Light Cream */
+                color: #5C4033;
+                border: 1px solid #C8E6C9; /* Lighter Green Border */
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            input[type="radio"], input[type="checkbox"] {
+                margin-right: 5px;
+            }
+            button {
+                background-color: #4DB6AC; /* Nook Inc. Teal */
+                color: #FFFFFF;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+            button:hover {
+                background-color: #26A69A; /* Darker Teal */
+            }
+            .error {
+                border: 2px solid #EF9A9A; /* Soft Red */
+                background-color: #FFEBEE; /* Lighter Pink */
+            }
+            #count {
+                font-size: 0.9em;
+                color: #A1887F; /* Muted Brown */
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Animal Crossing Resident Application</h2>
+
+        <form id="myForm">
+            <label for="username">Villager Name:</label>
+            <input type="text" id="username" name="username" required minlength="3" maxlength="10">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="button" id="toggle">Show/Hide</button>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your NookLink Email" required>
+
+            <p>Choose your Personality:</p>
+            <!-- THIS IS EXTRA ANIMAL CROSSING FAN HEHEEH -->
+            <input type="radio" id="peppy" name="personality" value="peppy">
+            <label for="peppy" style="display:inline; font-weight:normal;">Peppy</label>
+            <input type="radio" id="jock" name="personality" value="jock">
+            <label for="jock" style="display:inline; font-weight:normal;">Jock</label>
+            <input type="radio" id="lazy" name="personality" value="lazy">
+            <label for="lazy" style="display:inline; font-weight:normal;">Lazy</label>
+            <input type="radio" id="snooty" name="personality" value="snooty">
+            <label for="snooty" style="display:inline; font-weight:normal;">Snooty</label>
+
+            <label for="spawnpoint">Choose your Island Destination:</label>
+            <select name="spawnpoint" id="spawnpoint">
+                <option value="nookaway">Nookaway Isle</option>
+                <option value="bellcove">Bellcove</option>
+                <option value="pearadise">Pearadise</option>
+                <option value="stardew">Stardew Shores</option>
+            </select>
+
+            <label for="desc">Write your villager catchphrase:</label>
+            <textarea name="desc" id="desc" rows="4" maxlength="100"></textarea>
+            <p id="count">0/100</p>
+
+            <button type="submit">Submit Application</button>
+
+            <script>
+                $("#myForm").submit(function(event){
+                    event.preventDefault();
+                    alert("Form submitted with jQuery!");
+                });
+
+                $("#toggle").click(function(){
+                    let password = $("#password");
+                    password.attr("type", password.attr("type") === "password" ? "text" : "password");
+                });
+
+                $("#desc").on("input", function(){
+                    $("#count").text($(this).val().length + "/100")
+                });
+                
+                $("#myForm").submit(function(e){
+                    e.preventDefault();
+                    if ($("#username").val() === "") {
+                        $("#username").addClass("error");
+                    } else {
+                        $("#username").removeClass("error");
+                        alert("Application Submitted! XD");
+                    }
+                });
+            </script>
+        </form>
+
+    </body>
+</html>
